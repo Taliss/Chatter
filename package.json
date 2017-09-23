@@ -1,0 +1,19 @@
+{
+  "name": "chatter",
+  "version": "0.0.1",
+  "description": "Simple chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taliss/Chatter.git"
+  },
+  "author": "Iliyan Vlahov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Taliss/Chatter/issues"
+  },
+  "homepage": "https://github.com/Taliss/Chatter#readme"
+}
