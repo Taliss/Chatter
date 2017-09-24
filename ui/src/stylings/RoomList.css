@@ -1,0 +1,34 @@
+.rooms-container {
+  display: flex;
+  flex-direction: column;
+  /* border-right: 2px solid #1A0505; */
+  box-sizing: border-box;
+  width: 200px;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.room-item {
+  box-sizing: border-box;
+  border-bottom: 2px solid #4cdbc9;
+  min-height: 60px;
+  padding: 18px 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  background-color: #6d061c;
+  cursor: pointer;
+  color: #f2e8ea;
+}
+
+.room-item:hover {
+  font-weight: 600;
+  background-color: #4cdbc9;
+  color: #6d061c;
+  border-bottom-color: #1A0505;
+}
+
+ 
