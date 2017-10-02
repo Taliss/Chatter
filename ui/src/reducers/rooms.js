@@ -1,4 +1,4 @@
-import R from 'ramda';
+import { omit } from 'ramda';
 
 const initialRoomsState = {
   // TODO set owner to be something real
@@ -14,20 +14,19 @@ const initialRoomsState = {
   noasdastGlobal6: { ownerId: 'otnovoAZ', name: 'GUasdZasd12' },
   notGlobasdasal6a: { ownerId: 'otnovoAZ', name: 'GUZasasdasdd12' },
   notGlobasdasasdasdal6b: { ownerId: 'otnovoAZ', name: 'GUZasasdasdasdasdd12' },
-  notGlobasdasasdasdasl6v: { ownerId: 'otnovoAZ', name: 'GUZasasdasdd12asdasd2' },
   notGlobasdasal6asda: { ownerId: 'otnovoAZ', name: 'GUZasasdasdd12asdasaa3' },
   notGlobasdasalasdas6d: { ownerId: 'otnovoAZ', name: 'GUZasasdasdd12asdas4' },
 }
 
-const rooms = (state = initialRoomsState , { type, room, roomId }) => {
+const rooms = (state = initialRoomsState, { type, room, roomId }) => {
   switch (type) {
     case 'ADD_ROOM':
       return Object.assign({}, state, room);
-      case 'REMOVE_ROOM':
-      return R.omit([roomId], state);
+    case 'REMOVE_ROOM':
+      return omit([ roomId ], state);
     default:
       return state;
   }
-}
+};
 
 export default rooms;
