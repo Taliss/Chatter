@@ -1,7 +1,8 @@
+const initialMessages = [];
 
 const addNewMessage = (state = [], message) => [ ...state, message ];
 
-const messages = (state = [], { type, message }) => {
+const messages = (state = initialMessages, { type, message }) => {
   switch (type) {
     case 'ADD_CURRENT_USER_MESSAGE':
       return addNewMessage(state, message);

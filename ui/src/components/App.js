@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import RoomList from './Containers/RoomList';
+import React from 'react';
 import { ConnectedRouter } from 'react-router-redux';
+import RoomList from './containers/RoomList';
+import ChatPanel from './containers/ChatPanel';
 import createHistory from 'history/createBrowserHistory';
 
 const history = createHistory();
 
-class App extends Component {
-  render() {
-    return (
-      <ConnectedRouter history={history}>
-        <div className="app">
-          <RoomList />
-        </div>
-      </ConnectedRouter>
-    );
-  }
-}
+const App = () => (
+  <ConnectedRouter history={history}>
+    <div className="app">
+      <RoomList />
+      <ChatPanel />
+    </div>
+  </ConnectedRouter>
+);
 
 export default App;
