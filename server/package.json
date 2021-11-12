@@ -1,0 +1,43 @@
+{
+  "name": "live-chat",
+  "version": "1.0.0",
+  "description": "Live Chat with CLI & GUI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --watch api --watch config --watch db --watch constants --watch index.js --watch handlers",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@tig.ridewithvia.net:candidates/Iliyan-Vlahov-103451982002-9bo8.git"
+  },
+  "keywords": [
+    "chat",
+    "live",
+    "rooms",
+    "cli",
+    "node",
+    "react",
+    "repl",
+    "mongo"
+  ],
+  "author": "Iliyan Vlahov",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-openapi-validator": "^4.13.2",
+    "mongodb": "^4.1.3",
+    "socket.io": "^4.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1"
+  }
+}

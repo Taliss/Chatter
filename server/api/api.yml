@@ -1,0 +1,234 @@
+openapi: 3.0.1
+info:
+  title: chatter
+  description: Live Chat API
+  version: 1.0.0
+servers:
+  - url: /api
+tags:
+  - name: Rooms
+    description: For chat room specific endpoints
+  - name: Specification
+    description: The swagger API specification
+  - name: Healthcheck
+    description: To ping the server from the cli
+paths:
+  /healthcheck:
+    get:
+      tags:
+        - Healthcheck
+      responses:
+        200:
+          description: 'Healthy'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: Healthy
+  /rooms:
+    get:
+      tags:
+        - Rooms
+      responses:
+        200:
+          description: Return the names of all rooms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomNames'
+        4XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        5XX:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  # I really dont understand why endpoint is get in the example...
+  /rooms/get:
+    get:
+      tags:
+        - Rooms
+      parameters:
+        - in: query
+          name: name
+          description: Room name
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: limit
+          description: how many messages to fetch with the room
+          schema:
+            type: number
+            minimum: 1
+            maximum: 99
+      responses:
+        200:
+          description: Return the names of all rooms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        4XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        5XX:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /rooms/createRoom:
+    post:
+      tags:
+        - Rooms
+      parameters:
+        - in: query
+          name: name
+          description: Room name
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 63
+          required: true
+      responses:
+        200:
+          description: Return the names of all rooms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        4XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        5XX:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  # I really dont understand why endpoint is post in the example...
+  /rooms/post:
+    post:
+      tags:
+        - Rooms
+      requestBody:
+        description: Contains message, room name and user name.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMessageToRoomBody'
+      responses:
+        200:
+          description: Return the names of all rooms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        4XX:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        5XX:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /spec:
+    get:
+      tags:
+        - Specification
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+components:
+  schemas:
+    PostMessageToRoomBody:
+      type: object
+      properties:
+        room:
+          type: string
+          example: docker room
+        user:
+          type: string
+          example: Annoing Docker User
+          minLength: 1
+          maxLength: 64
+        msg:
+          type: string
+          example: Guys do you like Docker, cuz I love it!
+          minLength: 1
+          maxLength: 140
+      required:
+        - room
+        - user
+        - msg
+    Post:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Iliyan
+        created:
+          type: string
+          format: date-time
+          example: 2021-10-24:13:27:03
+        message:
+          type: string
+          example: I'm curious and motivated to learn GO or Python
+    Room:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Lets talk about NodeJS
+        posts:
+          type: array
+          $ref: '#/components/schemas/Post'
+    RoomNames:
+      type: array
+      items:
+        type: string
+        example: Docker is great
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 401
+      additionalProperties: true
+    InternalServerError:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Something went wrong, please try again later.
+        status:
+          type: integer
+          example: 500
+        statusCode:
+          type: integer
+          example: 500
+      additionalProperties: true

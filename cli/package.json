@@ -1,0 +1,27 @@
+{
+  "name": "chatter-cli",
+  "version": "1.0.0",
+  "description": "simple cli-client that connects that communicates over http with server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "terminal",
+    "prompt",
+    "command-line",
+    "interface",
+    "repl"
+  ],
+  "author": "Iliyan Vlahov",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^8.3.0",
+    "conf": "^10.0.3",
+    "socket.io-client": "^4.3.2"
+  },
+  "bin": {
+    "chat": "index.js"
+  }
+}
